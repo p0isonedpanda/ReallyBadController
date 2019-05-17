@@ -17,18 +17,22 @@ int temp = 1;
 int x = 2;
 int y = 3;
 
+// button
+int button = 8;
+
 void setup() {
   Serial.begin(9600);
   usonicsetup();
-  pinMode(13, OUTPUT);
+  pinMode(8, INPUT);
 }
 
 void loop() {
   inputs["usonic"] = usonic_input();
   inputs["ldr"] = ldr_input();
   inputs["temp"] = temp_input();
-  inputs["x"] = joyx_input();
-  inputs["y"] = joyy_input();
+  inputs["joyx"] = joyx_input();
+  inputs["joyy"] = joyy_input();
+  inputs["button"] = button_input();
   
   serializeJson(inputs, Serial); // send our JSON across serial
   Serial.println(""); // just a newline to help parsing python side
@@ -106,4 +110,14 @@ int joyy_input() {
 }
 //
 // END JOYSTICK
+//
+
+//
+// START BUTTON
+//
+int button_input() {
+  return digitalRead(button);
+}
+//
+// END BUTTON
 //
