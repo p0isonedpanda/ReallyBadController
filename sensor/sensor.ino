@@ -10,6 +10,9 @@ int usmax = 3000;
 // ldr sensor
 int ldr = 0;
 
+// temp sensor
+int temp = 1;
+
 void setup() {
   Serial.begin(9600);
   usonicsetup();
@@ -19,6 +22,7 @@ void setup() {
 void loop() {
   inputs["usonic"] = usonic_input();
   inputs["ldr"] = ldr_input();
+  inputs["temp"] = temp_input();
   
   serializeJson(inputs, Serial); // send our JSON across serial
   Serial.println(""); // just a newline to help parsing python side
@@ -72,4 +76,14 @@ int ldr_input() {
 }
 //
 // END LDR
+//
+
+//
+// START TEMP
+//
+int temp_input() {
+  return analogRead(temp);
+}
+//
+// END TEMP
 //
