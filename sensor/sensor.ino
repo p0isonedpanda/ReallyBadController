@@ -7,6 +7,9 @@ int trig = 7;
 int echo = 6;
 int usmax = 3000;
 
+// ldr sensor
+int ldr = 0;
+
 void setup() {
   Serial.begin(9600);
   usonicsetup();
@@ -15,6 +18,7 @@ void setup() {
 
 void loop() {
   inputs["usonic"] = usonic_input();
+  inputs["ldr"] = ldr_input();
   
   serializeJson(inputs, Serial); // send our JSON across serial
   Serial.println(""); // just a newline to help parsing python side
@@ -58,4 +62,14 @@ int usonic_input() {
 }
 //
 // END USONIC
+//
+
+//
+// START LDR
+//
+int ldr_input() {
+  return analogRead(ldr);
+}
+//
+// END LDR
 //
