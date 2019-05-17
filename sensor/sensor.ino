@@ -13,6 +13,10 @@ int ldr = 0;
 // temp sensor
 int temp = 1;
 
+// joystick
+int x = 2;
+int y = 3;
+
 void setup() {
   Serial.begin(9600);
   usonicsetup();
@@ -23,6 +27,8 @@ void loop() {
   inputs["usonic"] = usonic_input();
   inputs["ldr"] = ldr_input();
   inputs["temp"] = temp_input();
+  inputs["x"] = joyx_input();
+  inputs["y"] = joyy_input();
   
   serializeJson(inputs, Serial); // send our JSON across serial
   Serial.println(""); // just a newline to help parsing python side
@@ -86,4 +92,18 @@ int temp_input() {
 }
 //
 // END TEMP
+//
+
+//
+// START JOYSTICK
+//
+int joyx_input() {
+  return analogRead(x) / 4 - 128;
+}
+
+int joyy_input() {
+  return analogRead(y) / 4 - 128;
+}
+//
+// END JOYSTICK
 //
