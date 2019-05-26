@@ -1,4 +1,4 @@
-#include <ArduinoJson.h>
+ #include <ArduinoJson.h>
 
 StaticJsonDocument<200> inputs;
 
@@ -36,7 +36,7 @@ void loop() {
   
   serializeJson(inputs, Serial); // send our JSON across serial
   Serial.println(""); // just a newline to help parsing python side
-  delay(100);
+  delay(50);
 }
 
 //
