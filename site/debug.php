@@ -9,12 +9,27 @@
     $query = 'SELECT * FROM inputs';
     $result = $conn->query($query)->fetch_assoc();
 
-    echo '<p>usonic: ' . $result['usonic'] . '</p>';
-    echo '<p>ldr: ' . $result['ldr'] . '</p>';
-    echo '<p>temp: ' . $result['temp'] . '</p>';
-    echo '<p>joyx: ' . $result['joyx'] . '</p>';
-    echo '<p>joyy: ' . $result['joyy'] . '</p>';
-    echo '<p>button: ' . $result['button'] . '</p>';
+    echo '<div class="row">';
+    if ($result['usonic'] == 1) {
+    echo '    <div class="col"><p>usonic: active</p></div>';
+    } else {
+    echo '    <div class="col"><p>usonic: not active</p></div>';
+    }
+    echo '    <div class="col"><p>ldr: ' . floor($result['ldr'] / 1024 * 100) . '%</p></div>';
+    echo '    <div class="col"><p>temp: ' . floor($result['temp'] / 1024 * 100) . '%</p></div>';
+    echo '</div>';
+
+    echo '<div class="row">';
+    echo '    <div class="col">';
+    echo '        <p>joyx: ' . $result['joyx'] . '</p>';
+    echo '        <p>joyy: ' . $result['joyy'] . '</p>';
+    echo '    </div>';
+    if ($result['button'] == 1) {
+    echo '    <div class="col" style="padding: auto;"><p>button: pressed</p></div>';
+    } else {
+    echo '    <div class="col" style="padding: auto;"><p>button: not pressed</p></div>';
+    }
+    echo '</div>';
 
     $conn->close();
 ?>

@@ -22,13 +22,7 @@
             <h1 class="display-1">Debug Menu</h1>
         </div>
 
-        <div class="row">
-            <div class="col" id="debug">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
+        <div id="debug">
         </div>
     </main>
 </body>
